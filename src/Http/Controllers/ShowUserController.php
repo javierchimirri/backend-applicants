@@ -23,7 +23,24 @@ class ShowUserController
         $type = new Type($params['type']);
         $login = new Login($params['login']);
 
-        // TODO: implement me
+        $localUsers = $this->localUsersRepository->getByLogin($login, $type);
+
+        $user = 
+            [
+                'id' => $localUsers->getId()->getValue(),
+                'login' => $localUsers->getLogin()->getValue(),
+                'type' => $localUsers->getType()->getValue(),
+                'profile' => [
+                    'name' => $localUsers->getProfile()->getName()->getValue(),
+                    'company' => $localUsers->getProfile()->getCompany()->getValue(),
+                    'location' => $localUsers->getProfile()->getLocation()->getValue(),
+                ]
+            ];
+
+        $response->getBody()->write(json_encode($user));
+
+        return $response->withHeader('Content-Type', 'application/json')
+            ->withStatus(200, 'OK');
         
         return $response;
     }

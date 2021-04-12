@@ -10,6 +10,7 @@ use Osana\Challenge\Services\GitHub\GitHubUsersRepository;
 use Osana\Challenge\Services\Local\LocalUsersRepository;
 use Slim\Factory\AppFactory;
 use Zeuxisoo\Whoops\Slim\WhoopsMiddleware;
+use Slim\Middleware\BodyParsingMiddleware;
 
 require __DIR__ . '/../vendor/autoload.php';
 
@@ -32,9 +33,9 @@ $app = AppFactory::create();
 $app->add(new WhoopsMiddleware(['enable' => env('API_ENV') === 'local']));
 
 // routes
-$app->get('/', VersionController::class);
-$app->get('/users', FindUsersController::class);
-$app->get('/users/{type}/{login}', ShowUserController::class);
-$app->post('/users', StoreUserController::class);
+$app->get('/osana/', VersionController::class);
+$app->get('/osana/users', FindUsersController::class);
+$app->get('/osana/users/{type}/{login}', ShowUserController::class);
+$app->post('/osana/users', StoreUserController::class);
 
 $app->run();

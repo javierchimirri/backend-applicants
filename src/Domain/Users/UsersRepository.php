@@ -8,7 +8,7 @@ interface UsersRepository
 {
     public function findByLogin(Login $login, int $limit = 0): Collection;
 
-    public function getByLogin(Login $login, int $limit = 0): User;
+    public function getByLogin(Login $login, Type $type): User;
 
     public function add(User $user): void;
 }

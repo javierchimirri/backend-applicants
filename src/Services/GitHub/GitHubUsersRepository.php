@@ -17,12 +17,12 @@ class GitHubUsersRepository implements UsersRepository
 {
     public function findByLogin(Login $name, int $limit = 0): Collection
     {
-        // TODO: implement me
+        return new Collection(null);
     }
 
-    public function getByLogin(Login $name, int $limit = 0): User
+    public function getByLogin(Login $name, Type $type): User
     {
-        // TODO: implement me
+        return new Collection(null);
     }
 
     public function add(User $user): void
